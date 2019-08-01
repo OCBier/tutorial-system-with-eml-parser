@@ -13,7 +13,7 @@ function createTemplate($pageContents)
 		<link rel="stylesheet" type = "text/css" href="https://fonts.googleapis.com/css?family=Inconsolata"/>
 		<link rel="stylesheet" type = "text/css" href="https://fonts.googleapis.com/css?family=Source+Code+Pro"/> 
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif"/>
-		<link rel = "stylesheet" type = "text/css" href = "../shared/style.css"/> 
+		<link rel = "stylesheet" type = "text/css" href = "/style.css"/> 
 		<script type = "text/javascript" src = "scripts/ShowBody.js"></script>
 	</head>
 
