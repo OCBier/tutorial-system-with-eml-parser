@@ -9,7 +9,7 @@ Course content is formatted in an educational markup language (EML) which can be
 ## Use Cases and Scenarios
 
 -See Docs/Scenarios.pdf [Docs/Scenarios.pdf](https://github.com/OCBier/tutorial-system-with-eml-parser/blob/master/Docs/Scenarios.pdf)
--See [Docs/Use_Cases.png](https://github.com/OCBier/tutorial-system-with-eml-parser/blob/master/Docs/Use_Cases.png)
+ and [Docs/Use_Cases.png](https://github.com/OCBier/tutorial-system-with-eml-parser/blob/master/Docs/Use_Cases.png)
 
 
 
