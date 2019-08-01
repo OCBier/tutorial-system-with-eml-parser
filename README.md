@@ -5,24 +5,24 @@ A small-scale learning management system which will present different components
 Course content is formatted in an educational markup language (EML) which can be parsed and output as the corresponding HTML.
 
 
-**************
-##Use Cases and Scenarios
-*************
--See Docs/Scenarios.pdf  
--See Docs/Use_Cases.png
 
+## Use Cases and Scenarios
 
-**************
-##System Design 
-**************
--See Docs/Class_Design.pdf
+-See Docs/Scenarios.pdf [Docs/Scenarios.pdf](Docs/Scenarios.pdf)
+-See [Docs/Use_Cases.png](Docs/Use_Cases.png)
 
 
 
+## System Design 
 
-***************
-##Educational Markup Language Design
-***************
+-See [Docs/Class_Design.pdf](Docs/Class_Design.pdf)
+
+
+
+
+
+## Educational Markup Language Design
+
 
 Note that tag names are NOT case-sensitive.
 
@@ -118,7 +118,7 @@ See Docs/Lesson_Diagram.png
 -*Definition*
     1 or more instances in parent. Child of a TermList element. Represents the definition of a preceding Term. Must follow directly after a Term element.
 
-************
-##Database Design
-*************
-See [Docs/EERD.png]
+
+## Database Design
+
+See [Docs/EERD.png](Docs/EERD.png)
