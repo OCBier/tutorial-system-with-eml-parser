@@ -1,0 +1,622 @@
+﻿<!DOCTYPE html>
+
+
+<html>
+	<head> 
+		<meta charset = "utf-8"/>
+		<title>Section 1: HTML and CSS</title>
+		<script type = "text/javascript" src = "scripts/TemplateLoader.js"></script>
+		<script type = "text/javascript" src = "scripts/GeneralTemplate.js"></script>
+		<link rel="stylesheet" type = "text/css" href="https://fonts.googleapis.com/css?family=Inconsolata"/>
+		<link rel="stylesheet" type = "text/css" href="https://fonts.googleapis.com/css?family=Source+Code+Pro"/> 
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif"/>
+		<link rel = "stylesheet" type = "text/css" href = "style.css"/> 
+	</head>
+	
+	<!--Body hidden initially so that it is not displayed until template has been applied-->
+	<body class = "hidden">
+		<h2>Section 1: HTML and CSS</h2>
+		
+		<p>This section focuses on the <a href = "#structure-elements">semantic page structure elements</a> in HTML5, 
+		as well as <a href = "#input-elements">HTML 5 input elements</a></p>
+		
+		
+		<article id = "structure-elements">
+			<header>
+				<h3>HTML5 page-structure elements</h3>
+			
+				<p>One of the most useful features of HTML5 is that it includes several page structure elements which
+				were not found in HTML4. These include &LT;header&GT;, &LT;nav&GT;, &LT;footer&GT;, &LT;section&GT;, and &LT;article&GT;. </p>
+			
+				<p>Using the new structure tags often offers advantages over the old &LT;div&GT; and &LT;span&GT; tags. This is because they have
+				a much higher semantic value. In other words, they better describe the meaning and purpose of a given element. This allows the browser
+				to distinguish different types of content and handle it appropriately. By contrast, &LT;div&GT; and &LT;span&GT; only tells the browser
+				that the element is a block-level element, in the case of div, or an inline element, in the case of span. One example
+				of where this is useful is for visually impaired or anyone uses a screen reader. The improved structure tags allow the screen reader
+				to determine how or whether or not to include content in the output.</p>
+				
+				<p>That being said, &LT;div&GT; and &LT;span&GT; are still useful when no appropriate semantic tag exists. For example,
+				an arbitrary set of otherwise unelated elements may be wrapped in a containing &LT;div&GT;. This can be used element to 
+				achieve positioning on the set of elements, and to define margins, visibility, and other properties.</p>
+			</header>
+			
+			<section id = "header">
+				<h4>&LT;header&GT;</h4>
+				<p> This element is a container for the site's header. It will often contain &LT;h1&GT; elements used for the main
+				site heading, as follows. 
+				
+				<pre>
+				<code>
+				&LT;header&GT;
+				  &LT;h1&GT;My Site Heading &LT;/h1&GT; 
+				&LT;/header&GT;
+				</code>
+				</pre>
+								
+				<p>However, additional &LT;header&GT; elements may also be used to contain subheadings within the page. 
+				These subheadings can contain elements ranging from &LT;h2&GT; to &LT;h6&GT;, as well as descriptive text.
+				For example, you could have: </p>
+				
+				<pre>
+				<code>
+				&LT;header&GT;
+				  &LT;h1&GT;My Site Heading &LT;/h1&GT; 
+				&LT;/header&GT;
+					
+				&LT;header&GT;
+				  &LT;h2&GT; Name of subheading &LT;/h2&GT; 
+				  &LT;p&GT; section description ................&LT;/p&GT; 
+				&LT;/header&GT;
+					
+				&LT;header&GT;
+				  &LT;h1&GT;Name of another subheading &LT;/h1&GT; 
+				  &LT;p&GT; Section description &LT;/p&GT; 
+				&LT;/header&GT;
+				</code>
+				</pre>
+			</section>
+			
+			<section id = "nav">
+				 <h4>&LT;nav&GT;</h4>
+				 <p>The &LT;nav&GT; element represents a site's menu or other collections of navigation link such as an index. 
+				 
+				 It should be noted that this element is not intended as a container for all links on a page, only for 
+				 significant sets of links in a group. A typical use of &LT;nav&GT; for a menu of links is shown below. A similar
+				 structure could be used for a larger menu with submenus. These elements could be presented as drop-down menus, or in
+				 a sidebar. </p>
+				 <pre>
+				<code>
+				&LT;nav&GT;
+				  &LT;a href = &quot;http://www.example.com&quot;&GT;Example &LT;/a&GT; 
+				  &LT;a href = &quot;http://www.......&quot;&GT;Biz &LT;/a&GT;
+			          &LT;a href = &quot;http://www.......&quot;&GT;Baz &LT;/a&GT;
+				  &LT;a href = &quot;http://www.......&quot;&GT;Foo &LT;/a&GT;
+			          &LT;a href = &quot;http://www.......&quot;&GT;Bar &LT;/a&GT;
+				&LT;/nav&GT;
+				</code>
+				</pre>
+				
+				<p>Controlling the presentation of the menu using CSS is relatively straightforward. For example, the links
+				can be displayed in a horizontal navigation bar by setting the display property to "inline-block" for anchor
+				elements within the nav. Additional styling can also be applied to each anchor element, such as width,
+				height, background-color and font. Setting the display property to inline-block allows each anchor
+				to behave like a block-level element and have its own width and margins. However, it still retains
+				the characteristic of being displayed inline with other elements in the menu. Here is a simple illustration
+				of this approach in CSS. </p>
+				
+				<pre>
+				<code>
+				/*Display menu to be 50% width of parent. This could really be any value. Also set margins to 1em. */
+				nav
+				{
+					width: 50%;
+					margin: 3em;   /*Margins scale with font size*/
+				}
+				
+				/*Style for anchor elements within a nav */
+				nav a
+				{
+					display: inline-block;    /*Display as an inline-block level element*/
+					border: 1px solid black;
+					float: left;             /*No space between elements */
+					min-height: 1.5em;      /*Minimum usable height, scale with font size */
+					width: 6em;             /*Width scales with font size*/
+					padding: 1em;           /*Padding around button text.*/
+					font: bold 1/2em monospace;    /*Set font weight, size, and family*/
+					margin: 0;
+					background-color: dodgerblue;  /*Set background color to doger blue*/
+					text-align: center;            /*Center text in button*/
+				}
+				</code>
+				</pre>
+				
+			  				
+				<p>The example above uses a "non-list" approach. Although it is no longer necessary to use a list, this
+				is still a popular approach. The main reason is that, prior to HTML5, lists were a convenient container
+				for links in menus. In addition, some older browsers did not apply styles to inline elements correctly. This older
+				approach typically followed the following structure using an unordered list with each link (anchor) included
+				within a &LT;li&GT; element. </p>
+				
+				<pre>
+				<code>
+			   &LT;ul&GT;
+			           &LT;li&gt; 
+				     &LT;a href = &quot;http://www.example.com&quot;&GT;Example&LT;/a&GT; 
+				   &LT;/li&gt; 
+				   &LT;li&gt;
+				      &LT;a href = &quot;http://www.......&quot;&GT;Biz &LT;/a&GT; 
+				   &LT;/li&gt;
+				   &LT;li&gt;
+				      &LT;a href = &quot;http://www.......&quot;&GT;Baz &LT;/a&GT; 
+				   &LT;/li&gt;
+				   &LT;li&gt;
+				      &LT;a href = &quot;http://www.......&quot;&GT;Foo &LT;/a&GT; 
+				   &LT;/li&gt;
+				   &LT;li&gt;
+				      &LT;a href = &quot;http://www.......&quot;&GT;Bar &LT;/a&GT; 
+				   &LT;/li&gt;	
+			   &LT;/ul&GT;
+					</code>
+				</pre>
+			</section>
+		
+			<section id = "footer">
+				<h4>&LT;footer&GT;</h4>
+				
+				<p>As the name suggests, this tag holds content found in a document's footer. This includes information
+				like contact details, a link to a sitemap, author information, copyright restrictions, and access to technical support. </p>
+				<pre>
+				<code>
+				&LT;footer&GT;
+				   &LT;p&GT; 2017 ACME Corporation, All Rights Reserved&LT;/p&GT;
+				   &LT;address&GT; 
+				     12345 Example Drive &LT;br&GT;
+				     Somewhere, State 0987 &LT;br&GT;
+				     Elsewhere &LT;br&GT;
+				   &LT;/address&GT;
+				   &LT;p&GT; &LT;a href = &quot;http://www.example.com/contact.php&quot;&GT; Contact Us &LT;a&GT; &LT;/p&GT;
+				   &LT;p&GT; &LT;a href = &quot;http://www.example.com/sitemap.php&quot;&GT; Site Map &LT;a&GT; &LT;/p&GT;
+ 
+				 &LT;footer&GT;
+				</code>
+				</pre>
+				
+				<p>While the above example illustrates is the typical use, it is also valid to have more than one footer in a document.
+				This is similar to using multiple &LT;header&GT; elements for different sections.</p>
+		
+			</section>
+			
+			<section id = "section">
+				<h4>&LT;section&GT;</h4>
+				
+				<p>The section element is a fairly general element, but not as general as div. It is used to separate groups
+				of elements based on their theme. In other words, it should have semantically related content.
+				In most cases, this means that each &LT;section&GT; should contain a h1-h6 (Eg. &LT;h2&GT;) element
+				which naturally describes its theme, as shown in the example below. </p>
+				
+				<p>It is important to mention that the section element should not be used when there 
+				is a more specific semantic tag that is applicable. For example, a set of links acting as a site index should usually be 
+				placed in a &LT;nav&GT; container, rather than in a &LT;section&GT;</p>
+				
+				<pre>
+				<code>
+				&LT;section&GT;
+				   &LT;h2&GT; Getting started&LT;/h2&GT;
+				   &LT;p&GT;Paragaph on how to get started&LT;/p&GT;
+				   &LT;p&GT;Another paragraph on how to get started&LT;/p&GT;
+				   &LT;p&GT;etc.&LT;/p&GT;
+ 				 &LT;/section&GT;
+				 
+				 &LT;section&GT;
+				     &LT;h2&GT; Help available&LT;/h2&GT;
+				     &LT;p&GT;Paragraph on help available&LT;/p&GT;
+				   
+				      &LT;ul&GT;
+					   &LT;li&GT;Help resource&LT;/li&GT;
+					   &LT;li&GT;Another help resource&LT;/li&GT;
+					   <!--And so on -->
+				     &LT;/ul&GT;
+				   &LT;/section&GT;
+					 
+				 
+				</code>
+				</pre>
+				
+			</section>
+			
+			<section id = "article">
+				<h4>&LT;article&GT;</h4>
+				<p>An article element can hold any content which could be published independently of the rest of the document. In other
+				words, the element should still retain its meaning when used on its own. In a typical use-case, the site-wide banner,
+				menu, and footer would not be part of the article element. This is the case in the following, based on the structure of this
+				tutorial page:
+				
+				<pre>
+				<code>
+				&lt;header&gt;
+				  &lt;h1&gt;Site Banner Text&lt;/h1&gt;
+				&lt;/header&gt;
+				&lt;article&gt;
+				  &lt;h3&gt;HTML5 page-structure elements&lt;/h3&gt;
+			
+				  &lt;p&gt;One of the most useful features of HTML5 is that it includes several page structure elements which
+				  were not found in HTML4. These include &amp;LT;header&amp;GT;, &amp;LT;nav&amp;GT;, &amp;LT;footer&amp;GT;, &amp;LT;section&amp;GT;, and &amp;LT;article&amp;GT;. &lt;/p&gt;
+				
+				  &lt;section&gt;
+				    &lt;h4&gt;An HTML Element Name&lt;/h4&gt;
+					&lt;p&gt;Info about element, and comparison to other elements...&lt;/p&gt;
+					....
+					....
+				  &lt;/section&gt;
+				  
+				  
+				  &lt;section&gt;
+				    &lt;h4&gt;Another HTML Element Name&lt;/h4&gt;
+					&lt;p&gt;.....&lt;/p&gt;
+				  &lt;/section&gt;
+				  
+				  ...
+				  ...
+				  
+				&lt;/article&gt;
+				
+				
+				&lt;footer&gt;Site-wide footer elements&lt;/footer&gt;
+				</code>
+				</pre>
+				
+				<p>Another good example of a valid article element is a posting on a blog. While the posting is part of the blog's overall 
+				document, this posting could be presented independently elsewhere.</p>
+				
+				<p>It is also possible to use nested article elements. In this case, the inner article element must relate to its
+				parent article element. A very common instance of this would be comments on a news article published online. The
+				article is obviously marked as an article element. However, the reader comments on the article can each be wrapped in nested
+				article elements, as shown below. Here, each comment is in an article element which is in the section with id "comments". Each
+				comment article element has a header for user name (and possibly other info like posting time or user image), 
+				and a p element for the actual comment contents.</p>
+				
+				<pre>
+				<code>
+				&lt;article&gt;&lt;h2&gt;Rising Oil Prices Spark Tensions&lt;/h2&gt;
+				  &lt;section&gt;
+				    &lt;h3&gt;Intro.....&lt;/h3&gt;
+				  &lt;/section&gt;
+				  &lt;section&gt;
+				     &lt;h3&gt;President's response&lt;/h3&gt;
+				     &lt;p&gt;After a late-night meeting with cabinet....&lt;/p&gt;
+				     &lt;p&gt;.....&lt;/p&gt;
+				     ....
+				   &lt;/section&gt;
+				   &lt;section&gt;
+				     &lt;h3&gt;Other country's opinion&lt;/h3&gt;
+				     &lt;p&gt;....&lt;/p&gt;
+				     .....
+				   &lt;/section&gt;
+				    ....
+				 
+				   &lt;section id = &quot;comment-section&quot;&gt;
+				     &lt;h2&gt;Comments;&lt;/h2&gt;
+				     &lt;article&gt;
+				       &lt;header&gt;
+					   &lt;h3&gt;User name: John Smith&lt;/h3&gt;
+					   &lt;/header&gt;
+					   &lt;p&gt;I think this article is great!.....&lt;/p&gt;
+				 
+				     &lt;/article&gt;
+				   
+				     &lt;article&gt;
+				       &lt;header&gt;
+					   &lt;h3&gt;User name: Jane Doe&lt;/h3&gt;
+					   &lt;/header&gt;
+					   &lt;p&gt;This is the most biased writing ever. The author....&lt;/p&gt;
+				     &lt;/article&gt;
+				   
+				   				 
+				      ....
+				 	 
+				   &lt;/section&gt;
+			    &lt;/article&gt;
+				
+				</code>
+				</pre>
+					
+			</section>
+		</article>
+		
+		
+		
+		<article id = "input-elements">
+			<header>
+				<h3>HTML5 input elements</h3>
+			
+				<p>HTML 5 has several additional input types which make it easier to receive and validate data from users. All of these
+				types are used by specifying the "type" attribute within the existing &LT;input&GT; tag. Although this type of validation is
+				more limited than custom validation with JavaScript, it is much easier to use and offers a good first line of defense against
+				input errors. Another advantage of this type of validation is that it is usually very fast, given that no data is sent to the server.</p>
+			</header>
+			
+			<section id = "datetime-local-input">
+				<h4>Date and Time Input with <code class = "display-inline">&lt;input type = "datetime-local"&gt;</code></h4>
+				
+				<p>This input type offers the ability to get date and time data from the user in a uniform format. This format is
+				YYYY-MM-DDThh:mm. For example, 11am on 30 October, 2017 would be 2017-10-30T11:00. Many browsers offer a convenient date and time
+				picker to allow users to easily enter this information without having to worry about input format. This input type can be
+				utilized in a form, as shown below, or as an independent input.</p>
+			
+				<pre>
+				<code>
+				&lt;form&gt;
+				  ...
+				  &lt;label for = &quot;birth-date&quot;&gt;Date of birth: &lt;/label&gt;
+				  &lt;input type = &quot;datetime-local&quot; id = &quot;birth-date&quot; name = &quot;dateOfBirth&quot;&gt;
+				  ...
+				
+				  &lt;input type = &quot;submit&quot; value = &quot;submit&quot;&gt;
+				&lt;/form&gt;
+				
+				</code>
+				</pre>
+				
+				<figure>
+				<img alt = "Google Chrome Date Picker" title = "Date Picker in Google Chrome" src ="images/datetime-local-chrome.jpg"/>
+				<figcaption><p>Date-picker in Google Chrome (above)</p></figcaption>
+				</figure>
+				
+				<p>The main problem with the datetime-local input type is that it is not fully supported across all browsers. As of now,
+				a notable example is Firefox, which does not support this input type. This means that the input falls back to a simple
+				text input type. The type becomes the same as <code class = "display-inline">type = "text"</code> Since no date picker is provided,
+				the user will be required to enter date and time manually in exactly the "YYYY-MM-DDThh:mm" format, increasing the chance of input errors significantly.
+				One workaround for this problem is to avoid the datetime-local type altogether and use several &LT;select&GT; drop-down menus with &LT;option&GT; elements for
+				the year, month, day, and time (if required). </p>
+				
+				<pre>
+				<code>
+				&lt;form&gt;
+				...
+				
+				&lt;label for = &quot;day&quot;&gt;Day&lt;/label&gt;
+				&lt;select&gt;
+					&lt;option&gt;1&lt;/option&gt;
+					&lt;option&gt;2&lt;/option&gt;
+					&lt;option&gt;3&lt;/option&gt;
+					&lt;option&gt;4&lt;/option&gt;
+					&lt;option&gt;5&lt;/option&gt;
+					...
+					...
+				&lt;/select&gt;
+				
+				&lt;label for = &quot;month&quot;&gt;Month&lt;/label&gt;
+				&lt;select&gt;
+					&lt;option&gt;January&lt;/option&gt;
+					&lt;option&gt;February&lt;/option&gt;
+					&lt;option&gt;March&lt;/option&gt;
+					...
+					&lt;option&gt;December&lt;/option&gt;
+				&lt;/select&gt;
+				
+				&lt;label for = &quot;year&quot;&gt;Year&lt;/label&gt;
+				&lt;select&gt;
+					&lt;option&gt;1930&lt;/option&gt;
+					&lt;option&gt;1931&lt;/option&gt;
+					&lt;option&gt;1932&lt;/option&gt;
+					...
+					...
+					&lt;option&gt;2016&lt;/option&gt;
+				&lt;/select&gt;
+				
+				&lt;!--If time is required as well, the following can also be included --&gt;
+				&lt;label for = &quot;hour&quot;&gt;Hour&lt;/label&gt;
+				&lt;select&gt;
+					&lt;option&gt;1&lt;/option&gt;
+					&lt;option&gt;2&lt;/option&gt;
+					&lt;option&gt;3&lt;/option&gt;
+					...
+					...
+					&lt;option&gt;12&lt;/option&gt;
+				&lt;/select&gt;
+				
+				&lt;label for = &quot;minute&quot;&gt;Minute&lt;/label&gt;
+				&lt;select&gt;
+					&lt;option&gt;00&lt;/option&gt;
+					&lt;option&gt;05&lt;/option&gt;
+					&lt;option&gt;10&lt;/option&gt;
+					...
+					...
+					&lt;option&gt;55&lt;/option&gt;
+				&lt;/select&gt;
+				
+				&lt;select&gt;
+					&lt;option&gt;AM&lt;/option&gt;
+					&lt;option&gt;PM&lt;/option&gt;
+				&lt;/select&gt;
+				...
+				
+				&lt;input type = &quot;submit&quot; value = &quot;submit&quot;&gt;
+				&lt;/form&gt;
+				
+				</code>
+				</pre>
+				
+				<p>The drawback of this approach is that it makes the solution significantly more complex since we
+				need to consider that each month will have a different number of days. There are also other issues to consider, such as different time formats and
+				date formats in different regions of the world. It would be possible to hard-code every single possible combination
+				of day and month, but this would be extremely tedious and difficult to maintain. The obvious solution is to use JavaScript to generate the
+				correct set of options. This can be accomplished using a library like jQuery with plugins like <a href = "https://jqueryui.com/datepicker/">Datepicker</a>
+				For an example of implementing your own solution in JavaScript, please see the <a href = "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime-local">
+				MDN site's explanation of datetime-local</a>.</p>
+			</section>
+		
+			<section id = "number-input">
+			<h4>Number Input with <code class = "display-inline">&lt;input type = "number"&gt;</code></h4>
+			<p> This type of input element takes an integer or floating-point number value. Unlike the datetime-local input type, the number input type is well supported 
+			across all popular browsers. It is also more straightforward to use. Most browsers display a number input with up and down buttons for easily increasing
+			or decreasing the value. Users can also type a value directly in the input field.
+			</p>
+			<p>Various restrictions can be imposed on number inputs. Most notably, the minimum and maximum values with the "min" and "max" attributes, respectively. In addition, the
+			step size of each click on the up and down arrows can be specified using the "step" attribute. It is also possible to set a default value, which is the starting value 
+			of the input field. This is done using the "value" attribute. The example below shows each of these attributes.</p>
+			
+			<pre>
+			<code>
+			
+			&lt;!--Set the input to type number, with a minimum value of 0 
+			and a maximum value of 10. The step size for each button click 
+			on the input's arrows is 1 and the starting value is 1 --&gt;
+			
+			&lt;input type = &quot;number&quot; name = &quot;number-input&quot; min = &quot;0&quot; 
+			  max = &quot;10&quot; step = &quot;1&quot; value = &quot;1&quot;&gt;
+			
+			</code>
+			</pre>
+			
+			<p>This produces the following input field in Firefox:</p>
+			<img style= "width: 40%;" alt = "Firefox Number Input" title = "Number Input in Firefox" src ="images/number-firefox.jpg"/>
+			
+			</section>
+			
+			
+			<section id = "range-input">
+				<h4>Range Input with <code class = "display-inline">&lt;input type = "range"&gt;</code></h4>
+				
+				<p>Besides the number type, another useful type for getting numeric input is the range input type. This type is most appropriate when
+				the precise value is not required. Rather, an approximate value somewhere within the range of values is desired. </p>
+				
+				<p>Much like the number type, it is possible to specify a minimum ("min" attribute) and maximum ("max" attribute) for the range
+				input type. It is also possible to specify granularity of the range input using the "step" attribute. Most browsers will show the range
+				input as a slider control, so the "step" attribute will control how fine the control is. In other words, how much movement is required
+				to increase the input value, and by how much. The following example shows a range input with a minimum value of 1 and a maximum value of 20.
+				The "step" attribute is 1 so around 1/20<sup>th</sup> of the width of the control will increase or decrease the value by 1.</p>
+				
+				<pre>
+				<code>
+				&lt;label for = &quot;range-input&quot;&gt;1&lt;/span&gt; 
+				  &lt;input type = &quot;range&quot; min = &quot;1&quot; max = &quot;20&quot; step = &quot;1&quot; id = &quot;range-input&quot;&gt;&lt;/input&gt;
+				&lt;label for = &quot;range-input&quot;&gt;20&lt;/label&gt;
+				</code>
+				</pre>
+				
+				<figure>
+				<img style = "width: 50%;" alt = "Range input at 10 in Firefox" title = "Range at 10 in Firefox" src ="images/range-10-firefox.jpg"/>
+				<figcaption><p>Range input at 10 in Firefox (above)</p></figcaption>
+				</figure>
+				
+				<figure>
+				<img style = "width: 50%;" alt = "Range input at 16 in Firefox" title = "Range at 16 in Firefox" src ="images/range-16-firefox.jpg"/>
+				<figcaption><p>Range input at 16 in Firefox (above)</p></figcaption>
+				</figure>
+				
+			</section>
+			
+			<section id = "email-input">
+				<h4>Email Input with <code class = "display-inline">&lt;input type = "email"&gt;</code></h4>
+				
+				<p>As the name indicates, the e-mail input type is intended for entry of e-mail addresses. This is extremely useful in any use-case
+				where we must be able to contact users later. Examples include order forms, newsletter subscriptions, and technical support requests.
+				Email addresses are also used frequently in login screens in place of (or in addition to) usernames and for password recovery.</p>
+				
+				<p>Several attributes can be specified for this type. These include the "minlength" and "maxlength" attributes which determine
+				allowed minimum and maximum length on input, respectively. Another useful attribute is "placeholder" which displays some value
+				before the element gain focus (user interacts with it), typically a dummy e-mail address. This helps the user to see the correct
+				format to use. We can also specify the "pattern" attribute, which takes a regular expression for the correct format
+				for an e-mail address and is used for validation. However, this is not required in many cases. The following example
+				shows how to create an e-mail input and how to use it to validate an e-mail.</p>
+				
+				<pre>
+				<code>
+			&lt;label for = &quot;email-field&quot;&gt;E-mail: &lt;/label&gt;
+	         	&lt;input id = &quot;email-field&quot;  name = &quot;email-input&quot; type = &quot;email&quot; minlength = &quot;3&quot; 
+				     maxlength = &quot;100&quot; placeholder = &quot;myname@example.com&quot;/&gt;
+		        &lt;input type = &quot;submit&quot; name = &quot;submit-button&quot; value = &quot;submit&quot;&gt;
+				</code>
+				</pre>
+				
+	 			<p>This code produces the following result in Internet Explorer:</p>
+				<figure>
+				<img style = "width: 50%;" alt = "Valid e-mail address" title = "Valid e-mail address IE" src ="images/IE-valid-email.jpg"/>
+				<figcaption><p>Valid e-mail address in Internet Explorer</p></figcaption>
+				</figure>
+				
+				<figure>
+				<img style = "width: 50%;" alt = "Inalid e-mail address" title = "Invalid e-mail address IE" src ="images/IE-invalid-email.jpg"/>
+				<figcaption><p>Invalid e-mail address in Internet Explorer</p></figcaption>
+				</figure>
+				
+				<p>Most browsers handle the e-mail input type works as expected. E-mail addresses are validated, and the user is notified if they
+				have entered an invalid format. Unfortunately, some browsers do not support e-mail addresses with non-Latin characters. They will either
+				mark these e-mail addresses as invalid or they will automatically convert certain characters to Latin characters before sending form
+				data to the server. The latter is the case with the Google Chrome. This means that the e-mail input should be used with caution as it
+				may limit internationalization. </p>
+				
+				<p></p>
+			</section>
+			
+			<section>
+				<h4>Selecting Color Input with <code class = "display-inline">&lt;input type = "color"&gt;</code></h4>
+				
+				<p>This input type is somewhat different from the ones discussed so far. It allows users to select a specific color. While this
+				color is stored as a string for a hexadecimal format color, some browsers allow users to select from a color palette which
+				is actually the operating system's default color picker.
+				Other browsers like Safari and Opera require that users enter a valid hexadecimal color code (Eg. #ff0000) but they do not show a color palette.
+				This value will be validated. Unfortunately, Internet Explorer offers no support for this input type, which means that it will fall back to the
+				default "text" type. However, Microsoft's more recent Edge browser now offers basic support for ">&lt;input type = "color"&gt;. </p>
+				
+				<p>One of the attributes which can be specified for this input type is the "value" attribute. This sets the initial color to the specified value. This
+				 attribute is also used to store the user's selection, as is the case for many input elements.</p>
+				<pre>
+				<code>
+			&lt;label for = &quot;color-field&quot;&gt;Color &lt;/label&gt;
+			&lt;input id = &quot;color-field&quot; name = &quot;color-input&quot; type = &quot;color&quot; /&gt;
+		     &lt;input type = &quot;submit&quot; name = &quot;submit-button&quot; value = &quot;submit&quot;&gt;
+				</code>
+				</pre>
+				
+				<p>The code above produces the following in Firefox</p>
+				<figure>
+					<img alt = "Color picker in Firefox" title = "Color palette in Firefox" src ="images/color-picker-firefox.jpg"/>
+					<figcaption><p>Color picker in Firefox</p></figcaption>
+				</figure>
+			</section>
+			
+		
+			<section>
+				<h4>Search queries with <code class = "display-inline">&lt;input type = "search"&gt;</code></h4>
+				<p>Compared to other HTML5 input types, search is probably the least complex. Validation is handled in the same way as text, so any characters are allowed. 
+				   The main difference is that browsers will usually display this input in a different way then the normal text input. For example, Google chrome displays a list of 
+				   previous searches if the user has used the input previously. As in the case of other input types, the "minLength" and maxLength attributes can be used to control the 
+				   length of the search term. It is also possible to specify a placeholder text which is displayed before input is entered. This is done using the "placeholder" attribute. 
+				   As you can see here, the syntax is the same as for other input types. The length is limited to between 1 and 100 characters.
+				</p>
+				   
+				 					
+				<pre>
+				<code>
+			&lt;label for = &quot;search-field&quot;&gt;Search &lt;/label&gt;
+			&lt;input id = &quot;search-field&quot; name = &quot;search-input&quot; type = &quot;search&quot; 
+				minLength = &quot;1&quot; maxLength = &quot;100&quot;/&gt;
+				&lt;input type = &quot;submit&quot; name = &quot;submit-button&quot; value = &quot;submit&quot;&gt;
+				</code>
+				</pre>
+				
+				<figure>
+				<img style = "width: 50%;" alt = "Search input in Google Chrome with list of previous searches" title = "Previous searches in search input" src ="images/search-chrome.jpg"/>
+				<figcaption><p>Google Chrome displays the following list which contains search terms where the first n characters match the input, where n is the length of the input. 
+				  This provides a shortcut to access previously entered searches.</p></figcaption>
+				</figure>
+			
+			</section>
+			  
+			  
+			
+			
+		</article>
+	
+	
+		<aside>
+			<p>You can now review the two main areas above with <a href = "quiz1.html">Quiz 1</a></p>
+		</aside>
+	
+	
+	
+	
+	</body>
+</html>

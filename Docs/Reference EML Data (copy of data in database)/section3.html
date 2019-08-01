@@ -1,0 +1,230 @@
+﻿<Lesson>		
+		<Section>
+			
+			<Title>Section 3: AJAX And JSON</Title>
+			<Summary>
+			<Paragraph>This section looks at a specific application of JavaScript to transfer data in a universal format known as JSON. This is a very widely used
+			approach for many different uses cases. We first look at the <Location link = "#json-format">#json-format </Location>  details of JSON and then show how it can be used with AJAX (see
+			<Location link = "#using-ajax">#using-ajax</Location> ) to transfer
+			data between the client and server asynchronously. This means that the page does not need to be reloaded. The main benefit here is that there is
+			improved the performance. Using AJAX allows web applications to have the same (or at least similar) level of responsiveness compared to desktop apps.</Paragraph>
+			</Summary>
+			
+	
+			<Subsection id = "json-format"> 
+				<SubsectionHeading>JSON format</SubsectionHeading>
+				<Paragraph>JSON stands for "JavaScript Object Notation" which makes sense because JSON syntax looks a lot like JavaScript objects.  However, JSON can be used with other languages 
+				as well. The main advantages of JSON over XML, the other major data storage and transmission format for web applications, is that JSON is less complicated to work with
+				directly in JavaScript and it is much smaller in size with a relatively simple syntax. On the other hand, XML has the advantage of supporting schemas for defining the 
+				structure of data. This allows the data to be validated against the schema which is a description of the different data types and their structure.
+				However, the trade-off is that the XML syntax is more complex. It usually requires more characters (and tokens) to represent the same information. </Paragraph>
+				
+				<Paragraph>The basic format for JSON uses an object with various attributes holding data. Attribute names are separated by colons, and different name:value pairs are separated by commas,
+				as follows. Note that the quotation marks on attribute names are required in JSON, unlike normal JavaScript objects.</Paragraph>
+				
+				<CodeExample>
+				<CodeText>
+				
+				var biz = {"color": "green", "shape": "square"}; 
+				
+				</CodeText>
+				</CodeExample>
+				
+				<Paragraph>Within a .JSON file, this syntax could be used to produce an object named biz: </Paragraph>
+				
+				<CodeExample>
+				<CodeText>
+				
+				{  "biz" : {"color": "green", "shape":"square"} }
+				
+				</CodeText>
+				</CodeExample>
+				
+				<Paragraph>Each of the values in the JSON object can be accessed by name, like this:</Paragraph>
+				
+				<CodeExample>
+				<CodeText>
+				
+				var baz = biz.color;   //Using dot notation.
+				var foo = biz[shape];   //Using bracket notation.
+				
+				</CodeText>
+				</CodeExample>
+				
+				<Paragraph>It is also possible to define an array of JSON objects in JavaScript as follows. Note the square brackets
+				for array notation. Objects are separated by commas.:</Paragraph>
+				<CodeExample>
+				<CodeText>
+				
+				var shapes = 
+				[ {"color": "green", "shape":"square"},
+				  {"color": "red", "shape":"circle"}, 
+				  {"color": "blue", "shape":"triangle" }];
+				
+				</CodeText>
+				</CodeExample>
+				
+				<Paragraph>Each of the objects can be accessed using standard array index notation, giving access to the properties of each object. For
+				example, we can access the 1st element and examine its properties like this:</Paragraph>
+				
+					
+				<CodeExample>
+				<CodeText>
+				
+				var myShape = shapes[0];               //Index 0 is first element using array-index notation on the array.
+				myShapeType = myShape.shape;         //Using dot notation on the object.
+				myShapeColor = myShape["color"];     //Using array-index notation on the object
+				
+				</CodeText>
+				</CodeExample>		
+				
+				<Paragraph>A similar named array in the .JSON file use the following syntax, where "shapes" is wrapped in an object: </Paragraph>
+				
+				<CodeExample>
+				<CodeText>
+				
+				{"shapes" : 
+				[ {"color": "green", "shape":"square"},
+				  {"color": "red", "shape":"circle"}, 
+				  {"color": "blue", "shape":"triangle"}] 
+				} 
+				
+				</CodeText></CodeExample>			 
+	  
+				<Paragraph>The array can also be stored without a name, like this:</Paragraph>
+					
+				<CodeExample>
+				<CodeText>
+				
+				 [{"color": "green", "shape":"square"},
+				  {"color": "red", "shape":"circle"}, 
+				  {"color": "blue", "shape":"triangle"} ] 
+				
+				</CodeText>
+				</CodeExample>	
+
+				<Paragraph>It is possible to iterate over the contents of the array and access each of the elements.
+				   This can be done using a for loop or using the forEach()  function (Array.prototype.forEach())</Paragraph>
+				
+				<CodeExample>
+				<CodeText>
+				
+				 /*Use for-loop to log the color and shape */
+				 for (var i = 0; i &lt;shapes.length; ++i)
+				 {
+					console.log(shapes[i].color);
+					console.log(shapes[i].shape);
+				 }
+				 
+				 /*Similar result using forEach() where
+				   element points to current element in array*/
+				  shapes.forEach(function(element)
+				 {
+					console.log(element.color);
+					console.log(element.shape);
+				 }
+				
+				</CodeText>
+				</CodeExample>
+				
+			</Subsection>
+			
+		
+			
+			<Subsection id = "using-ajax"> 
+			
+				<SubsectionHeading>Getting JSON Data Using AJAX</SubsectionHeading>
+				
+				<Paragraph>The basic concept behind AJAX, or Asynchronous Javascript with XML is to request and process response data from the server
+				without reloading the page. Although the name suggests that AJAX only works with XML, this is not true. it is only one of its uses.
+				Notably, AJAX can be used to retrieve JSON data as well. As mentioned briefly in the introduction, AJAX improves the responsiveness of
+				web applications significantly. It also means that the entire page is not cleared, given that no page reload is required. This means
+				that content like inputs do not have to be</Paragraph>
+				
+				<Paragraph>I've included a brief example below that shows how to create an XMLHttpRequest object. This object handles the request which is sent to
+				the server. The basic idea is to create the object, attach an event listener which processes the response data, open the GET request,
+				and to then send the request to the server. Notice that no additional data needs to be sent with the request, as the GET request header
+				includes the location of the JSON resource. So, a value of "null" is passed to the send() function.</Paragraph>
+				
+				
+				<CodeExample>
+				<CodeText>
+				
+			/* Creates an XMLHttpRequest object to retrieve JSON data from a particular location. Assigns 
+			   appropriate event listner for the readystatechange event on this object and sets
+			   callback. 
+			   @param string indicating the location of the JSON data
+			   @param callback function to assign to eventlistener for readystatechange event */
+				function getJSONData(resource, callback)
+				{
+				  try
+				  {
+					 var xhr = new XMLHttpRequest();    //Create request.
+					 //Assign event listener for readystatechange event and pass xhr object to callback.
+					 xhr.addEventListener("readystatechange",  
+					 function() {
+				    		callback(xhr)
+					 }, false);        
+						
+					 xhr.open("GET", resource, true);     //Open the GET request and specify resource.
+					 xhr.send(null);                      //Send request. 
+						
+				  } catch(exception)
+				    {
+					  alert("Error. Request unsuccessful");
+				    }
+			         }
+				
+				</CodeText>
+				</CodeExample>
+				
+				<Paragraph>An important point here is the last argument to the open() method. It is set to true, which indicates that the
+				request should be asynchronous. This means that the function returns immediately and does not wait for the request to finish. If the argument
+				is false, then the function blocks the thread which called it until the request is finished. This can have a significant impact
+				on performance. It will usually prevent user input until the request has finished, causing frustration for the user. At worst, the browser may appear
+				unresponsive. So, in most cases, the last argument should be set to true and a callback function should be used which is invoked
+				when needed.</Paragraph>
+				
+				<Paragraph>The callback function itself is also important. It is invoked when an event known as a "readystatechange" occurs. This means that the
+				current state of the request has changed. This state is managed as the "readyState" attribute of the XMLHttpRequest object.
+				When the value of "readyState" is 4, this means that the request has completed. This is checked within the callback function. However,
+				the callback function also needs to check for the status code returned by the server. This is stored as the "status" attribute of the
+				XMLHttpRequest object. If "status" is 200, this indicates that the data was returned successfully in the response. Other HTTP status
+				codes in the 4xx category (such as the well-known "404 Not Found" error) are used to indicate different errors.</Paragraph>
+				
+				<Paragraph>If the request is successful and the data could be retrieved, the callback function extracts the data from the XMLHttpRequest object's
+				"responseText" property. This holds the response as a DOMString. Finally, the data can be converted to an object be using the JSON.parse()
+				function. After the data is stored in a variable, it could be processed further as a JavaScript object, in any way desired.
+				Please see the example below which shows the callback function. </Paragraph>
+				
+				<CodeExample>
+				<CodeText>
+				function myCallback(request)
+				{
+					//Make sure readystate is 4 and status is 200
+					if (request.readyState === 4 && request.status === 200)
+					{
+						//Get the JSON data as a DOMString.
+						var returnedData = request.responseText;
+						
+						//Parse data and create an object.
+						var parsedJSON = JSON.parse(returnedData);
+						
+						//Process data here
+						//....
+					}
+				}
+				
+				</CodeText>
+				</CodeExample>
+					
+			</Subsection>
+		
+		
+	</Section>
+	
+	<QuizLink>
+			<Paragraph>You can now review AJAX and JSON with Quiz 3:<Location link = "QuizDisplay.php?contentid=8">Quiz 3</Location></Paragraph>
+	</QuizLink>
+	
+</Lesson>

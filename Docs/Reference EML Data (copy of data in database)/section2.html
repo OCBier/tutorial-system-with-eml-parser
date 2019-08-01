@@ -1,0 +1,268 @@
+﻿<Lesson>
+	<Title>Section 2: JavaScript</Title>
+		
+		<Summary>
+		<Paragraph>
+		Section 1 briefly described using JavaScript to process input or set up a form. This next section focuses specifically on JavaScript and looks at three main areas.
+		These are 1) obtaining input using JavaScript: <Location link = "#javascript-form-input">#javascript-form-input</Location>, 2)using closure which controls the 
+		scope of variables and functions: <Location link = "#javascript-closure">#javascript-closure</Location>, and 3) using modules to separate larger JavaScript applications into different logical components:
+		<Location link = "#javascript-modules">#javascript-modules</Location> . 
+		</Paragraph> 
+		</Summary>
+		
+		
+		<Section>
+			<SectionHeading id="javascript-form-input">Obtaining Form Input Using JavaScript</SectionHeading>
+			<Summary>
+				<Paragraph>Obtaining input from a form with input elements or individual input elements is relatively straightforward. This is an important step to perform as it is required
+				for input validation. As I mentioned in section 1, the HTML5 input element validation is far from perfect. All elements are not widely supported, and the validation 
+				provided is not always consistent or sufficient. So, processing input with JavaScript before submission is often necessary for sufficient accuracy. This helps to avoid 
+				the costly scenario where invalid input is sent to the server.</Paragraph>
+			</Summary>
+	
+			<Subsection>
+			<SubsectionHeading>The "value" property</SubsectionHeading>
+			<Paragraph>In JavaScript, all HTMLInputElements representing HTML input elements like &LT;input&GT; and &LT;select&GT; have a "value" property. This
+			allows us to get the value which is currently entered. The example below uses the getElementById() function to get the HTMLInputElement
+			representing the element in the form with an id attribute of "first-name". The "value" attribute can then be accessed and output in an alert
+			dialog box. Note that the value property is writable (it is not read-only). This means that it can also be used to change the actual value of
+			the DOM input element.</Paragraph>
+			
+			<CodeExample>
+			<CodeText>
+	          	&lt;form&gt;
+		          &lt;input type = &quot;text&quot; id = &quot;first-name&quot; name = &quot;first-name&quot; 
+				  placeholder = &quot;Eg. John&quot;/&gt;
+		          &lt;input type = &quot;text&quot; id = &quot;last-name&quot; name = &quot;last-name&quot; 
+				  placeholder = &quot;Eg. Smith&quot;/&gt;
+		          &lt;input type = &quot;email&quot; id = &quot;email&quot; name = &quot;email&quot; 
+				  placeholder = &quot;someone@example.com&quot;/&gt;
+		        &lt;/form&gt;
+			</CodeText>
+			</CodeExample>
+			
+			
+			<Paragraph>The relatively simple HTML form (above).</Paragraph>
+			
+			<CodeExample>
+			<CodeText>
+			var firstNameElement = document.getElementById("first-name"); //Get the element with id "first-name".
+			alert(firstName.value);   //Output current value in a dialog box.
+			firstName.value = "James"; //Change actual value.
+			alert(firstName.value);   //Output will now be "James".
+			</CodeText>
+			</CodeExample>
+			
+			</Subsection>
+			
+			<Subsection>
+			<SubsectionHeading>Adding event listeners</SubsectionHeading>
+			<Paragraph>In most cases, we want to obtain an input value after the user has modified it. This can be done by using an event listener.
+			If you are not familiar with event listeners already, the idea here is to monitor one or more DOM elements for a specific event.
+			An event signals that something has occurred in the HTML document. This can be caused by a user action, such as clicking a button. Events
+			can also be caused by the browser, such as completing the action of loading the page. An event listener is used to fire a function, known
+			as a "callback", in response to an event. An event listener must be added to an event target, which receives the Event object
+			representing the event. The most basic approach is to add the event listener directly to the element on which the event will occur.</Paragraph>
+			
+			<Paragraph>Looking specifically at input elements, there are several events we could potentially listen for. These include: </Paragraph>
+			<TermList>
+				<Term>"change"</Term>
+				<Definition>Occurs when user changes an input value and the input element loses focus (Eg. user selects some other input element)</Definition>
+				
+				<Term>"input"</Term>
+				<Definition>Similar to "change" event, but occurs the moment input value changes (Eg. each time user enters another character)</Definition>
+				
+				<Term>"blur"</Term>
+				<Definition>Occurs when an input element loses focus, such as when user clicks elsewhere or presses "tab" key to go to different input field.</Definition>
+					
+				<Term>"focus"</Term>
+				<Definition>When the input element gains focus. This is typically when user clicks on it to begin entering input, or when a "tab" press
+				selects this element.</Definition>
+			</TermList>
+			
+			
+			<Paragraph>The following example shows how we can listen for the "change" event on the first name element (element with id "first-name"). 
+			This is accomplished by using the addEventListener() function on the element. This function takes 3 arguments.
+			The first argument is the name of the event we want to listen for, in this case "change". The
+			second argument is a reference to the callback function which is fired when the event occurs. This can be the name of a function 
+			we have defined elsewhere, or an anonymous function defined directly within the argument, which is the approach used here.
+			This function simply outputs the current value. However, this function could be used to validate the input. 
+			For example, we could check if the input is blank and whether it matches the pattern for a name. It is important to note here
+			that the value of "this" within the callback function is the element which has the event listener. So in this case, "this" refers to
+			our first name element. Finally, the third argument is optional and can often be ignored. However, there are cases where this argument 
+			is important. See <Location link = "https://javascript.info/bubbling-and-capturing">>this guide </Location> if you want to learn about the third argument</Paragraph>
+			
+			<CodeExample>
+			<CodeText>
+			var firstNameElement = document.getElementById("first-name"); //Get the element with id "first-name".
+			
+			firstNameElement.addEventListener("change", function() {
+				var currentValue = this.value;    //Get the value of the element which has the event listener.
+				alert(currentValue);               //Output value.
+			});
+			
+			<</CodeText>
+			</CodeExample>
+			
+			
+			</Subsection>
+
+		</Section>
+		
+		
+		<Section>
+			<SectionHeading id = "javascript-closure">Using closure in JavaScript</SectionHeading>
+			<Summary>
+			<Paragraph>JavaScript closure is an important technique to utilize. The goal here is to encapsulate or hide variables and functions and prevent
+			intentional or unintentional access from outside the scope we define. This means that other functions cannot access our variables or call
+			functions unless we explicitly allow it. The whole point of this is to prevent naming collisions with external JavaScript libraries or with other
+			scripts we have defined. These collisions can lead to strange and inexplicable errors which are difficult to identify. At worst, they
+			may only be identified after the page has been published.</Paragraph>
+			</Summary>
+		
+		<Subsection>
+		<SubsectionHeading>How it works</SubsectionHeading>
+		<Paragraph>By default, any variables or functions we define outside of a function will be added to the "window" object. This object
+		represents the current browser tab or page and is the global scope of our scripts. A vast number of useful global functions and properties belong to the "window" object.
+		Some properties include "document", "console", "navigator", "history", and "sessionStorage". Global functions include alert(), setInterval()
+		clearInterval(), setTimeout() and clearTimeout(). All of these properties and functions can be accessed by any
+		script on the page.</Paragraph>
+		
+		<Paragraph>It is now apparent that global variables are an important part of JavaScript. However, they must only be used when necessary. As mentioned in the introduction,
+		having uncontrolled access to functions and variables can cause naming collisions. This could mean obscuring a global variable with an identically named
+		local variable. It could also mean modifying a global variable when our intention is to modify a local variable. Likewise, we could call a global function
+		when we want to call a local function, or vice versa. The worst part is that these logical errors often don't cause a syntax error. So, everything
+		may appear normal until (possibly) serious errors occurs.</Paragraph>
+		
+		<Paragraph>Closure is an effective and simple way to prevent these problems. This approach uses an immediately invoked function expression (or IIFE)
+		to wrap all the variables and functions we want to hide from the global scope.  The IIFE contains an anonymous function which
+		is surrounded by parentheses. If desired, arguments can be passed to the IIFE, as long as corresponding parameters are specified 
+		in the anonymous function. As the name suggests, an IIFE is executed as soon as it is
+		encountered by the JavaScript interpreter. But note that it is actually parsed prior to code execution. Any functions defined within the anonymous function
+		will not be executed immediately, unless they are called explicitly. The basic syntax for an IIFE is as follows:</Paragraph>
+		
+		<CodeExample>
+		<CodeText>
+			var someGlobalObject = {};
+			var someGlobalVariable = 1;
+			(function(desiredParameter1, desiredParameter2) {
+			
+			//Desired code goes here	
+			var myVar = "this variable is encapsulated";    //Encapsulated variable which is only accessible in this scope.
+			alert("Accessing myVar from inside IIFE gives:" + myVar); 
+			
+			}(someGlobalObject, someGlobalVariable));
+		
+			 //This gives result of undefined since myVar is not accessible.
+			alert("Accessing myVar from outside the IIFE gives:" + myVar);    
+		
+		</CodeText>
+		</CodeExample>
+		
+		
+		<Paragraph>In the example above, "someGlobalObject" and "someGlobalVariable" are passed as arguments to the IIFE. However, myVar is encapsulated. Executing the code
+		shows that myVar can be accessed within the expression. However, attempting to access it outside (in the global scope) gives a result of "undefined." </Paragraph>
+		
+		<Paragraph>The following is also valid syntax for an IIFE. The difference is that the parentheses with any arguments are placed outside the closing parenthesis
+		of the expression. You can use whichever makes the most sense to you.</Paragraph>
+		
+		
+		<CodeExample>
+		<CodeText>
+			var someGlobalObject = {};
+			var someGlobalVariable = 1;
+			(function(desiredParameter1, desiredParameter2, ...) {
+			
+			//Desired code goes here	
+			//Desired code goes here	
+			var myVar = "something"    //Encapsulated variable which is only accessible in this scope.
+			
+			})(someGlobalObject, someGlobalVariable);        //Parentheses outside the closing parenthesis of expression.          
+			
+			alert("Accessing myVar from outside the IIFE gives:" + myVar);  
+		
+		</CodeText>
+		</CodeExample>
+		
+		</Section>
+		
+
+
+
+		<Section>>
+			<SectionHeading id = "javascript-modules">Using Modules</SectionHeading>
+			<Paragraph>It can be hard to manage a JavaScript application that is limited to one file. As the size of the application grows, it becomes increasingly difficult to maintain
+			and debug. The obvious solution in this case is to divide the application into multiple files. While this makes the code easier to manage, it introduces another
+			problem. The load order of different modules must be correct. Otherwise, any module(s) which depend on another module will not work correctly if that
+			module is not loaded before them. For example, if module A depends on a constructor which is defined in Module B, but the file containing Module B is not yet
+			loaded, then the interpreter will conclude that the constructor is undefined and usually produce an error.</Paragraph>
+			
+			<Paragraph>It turns out there is solution to both problems. This is an approach which imports modules directly into the script which uses them.</Paragraph>
+	
+		
+		<Subsection>
+			<SubsectionHeading>How to import a module</SubsectionHeading>
+			
+			<Paragraph>Importing a module into a script which uses it is relatively simple. First, ensure that any files which create or add to the module will load correctly by
+			adding their location as the "src" attribute in a script element in the document's head. Now, simply use the module object's global name in any scripts
+			which need to use it. To avoid naming collisions, it is best to pass the global object for the module as an argument to an IIFE. The module object can then be
+			accessed using a local reference within the function. The basic pattern to use is as follows:</Paragraph>
+			
+		<CodeExample>
+		<CodeText>			
+			(function(myModule) {
+			
+			  someFunction()
+			  {
+				 myVar = myModule.foo;//Use the module here
+				 myModule.biz();
+				 //etc.
+			  }	
+			  
+			  //Call someFunction as soon as all resources have been loaded.
+			  window.addEventListener("load", someFunction);
+			
+			}(GLOBAL_MODULE));             //Here, GLOBAL_MODULE is the global module object.
+			
+		</CodeText>
+		</CodeExample>
+			
+			<Paragraph>Actually defining and adding to the module is somewhat more complicated. Remember that we can't assume that the module will actually
+			be defined at any given time before the page has been loaded, since the different JavaScript files for the application could be loaded in any order.
+			To solve this, the approach below can be used. </Paragraph>
+			
+		<CodeExample>
+		<CodeText>	
+			var GLOBAL_MODULE = (function(myModule){
+			
+			  myModule.foo = "Something";    //Define foo here.
+			  myModule.biz = function()
+			  {
+				//Define biz() here.
+			  }
+			  			  
+			  return myModule;
+		      //If it is exists, pass in current GLOBAL_MODULE object. Otherwise pass an empty object.						
+			}(GLOBAL_MODULE || {} ));            
+			
+		</CodeText>
+		</CodeExample>
+			
+			<Paragraph>So what is happening here? As mentioned in the last comment, we pass the reference to the global object "GLOBAL_MODULE" to the IIFE, if it is defined. Otherwise,
+			pass an empty object. Now, in the function, the argument is accessed using the local reference "myModule". This object is changed as needed,
+			by adding functions and data. We then return a reference to the updated module. Notice in the first line that the returned reference is assigned to
+			the global variable GLOBAL_MODULE. This means that if the object did not exist previously, it will now be available via the global variable "GLOBAL_MODULE".
+			This will occur if the particular script is the first one to have this IIFE executed. Subsequent files which update the module can follow exactly
+			the same syntax, but they will return a reference to the updated existing "GLOBAL_MODULE" and assign it to the variable "GLOBAL_MODULE" again.</Paragraph>
+			
+			<Paragraph>The key here is that the module can be imported or modified in this way across multiple files, without having to worry about load order.</Paragraph>
+		
+		</Subsection>
+		</Section>
+		
+		<QuizLink>
+			<Paragraph>You can now review the JavaScript topics above with <Location link = "QuizDisplay.php?contentid=7">Quiz 2</Location></Paragraph>
+		</QuizLink>
+		
+</Lesson>
+	
