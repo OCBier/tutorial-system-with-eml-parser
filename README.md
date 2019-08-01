@@ -6,14 +6,14 @@ Course content is formatted in an educational markup language (EML) which can be
 
 
 **************
-Use Cases and Scenarios
+##Use Cases and Scenarios
 *************
 -See Docs/Scenarios.pdf  
 -See Docs/Use_Cases.png
 
 
 **************
-System Design 
+##System Design 
 **************
 -See Docs/Class_Design.pdf
 
@@ -21,7 +21,7 @@ System Design
 
 
 ***************
-Educational Markup Language Design
+##Educational Markup Language Design
 ***************
 
 Note that tag names are NOT case-sensitive.
@@ -118,3 +118,7 @@ See Docs/Lesson_Diagram.png
 -*Definition*
     1 or more instances in parent. Child of a TermList element. Represents the definition of a preceding Term. Must follow directly after a Term element.
 
+************
+##Database Design
+*************
+See [Docs/EERD.png]
