@@ -30,25 +30,27 @@ Note that tag names are NOT case-sensitive.
 
 -See [Docs/Quiz_Diagram.png](https://github.com/OCBier/tutorial-system-with-eml-parser/blob/master/Docs/Quiz_Diagram.png)
 
-*Quiz*
+
+
+-*Quiz*
     Represents the entire quiz with multiple choice questions. Acts as the parent for all quiz elements.
 
-*Title*
+-*Title*
     1 instance in parent. Text element containing the title of the quiz (Eg. Lesson 1 Quiz) in this context.
     
 -*Instructions*
     1 instance in parent. Text element which gives instructions to the learner about how to complete the quiz. May also contain any points that need to be highlighted to ensure quiz completion.
     
-*QuizBody*
+-*QuizBody*
     1 instance in parent. The main section of the quiz containing 1 or more multiple choice questions.
     
-*MCQuestion*
+-*MCQuestion*
     1 or more instances in parent. A multiple choice question.
     
-*QuestionHeading*
+-*QuestionHeading*
     1 instance in parent. A label for a specific question. Should uniquely identify question with a numeric value starting indexed from 1.
     
-*QuestionText*
+-*QuestionText*
     1 instance in parent. The text of the question which the learner must answer.
     
 -*CorrectOption*
