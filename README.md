@@ -8,14 +8,14 @@ Course content is formatted in an educational markup language (EML) which can be
 
 ## Use Cases and Scenarios
 
--See Docs/Scenarios.pdf [Docs/Scenarios.pdf](Docs/Scenarios.pdf)
--See [Docs/Use_Cases.png](Docs/Use_Cases.png)
+-See Docs/Scenarios.pdf [Docs/Scenarios.pdf](https://github.com/OCBier/tutorial-system-with-eml-parser/blob/master/Docs/Scenarios.pdf)
+-See [Docs/Use_Cases.png](https://github.com/OCBier/tutorial-system-with-eml-parser/blob/master/Docs/Use_Cases.png)
 
 
 
 ## System Design 
 
--See [Docs/Class_Design.pdf](Docs/Class_Design.pdf)
+-See [Docs/Class_Design.pdf](https://github.com/OCBier/tutorial-system-with-eml-parser/blob/master/Docs/Class_Design.pdf)
 
 
 
@@ -28,7 +28,7 @@ Note that tag names are NOT case-sensitive.
 
 **Quiz Elements**
 
--See Docs/Quiz_Diagram.png
+-See [Docs/Quiz_Diagram.png](https://github.com/OCBier/tutorial-system-with-eml-parser/blob/master/Docs/Quiz_Diagram.png)
 
 *Quiz*
     Represents the entire quiz with multiple choice questions. Acts as the parent for all quiz elements.
@@ -63,7 +63,7 @@ Note that tag names are NOT case-sensitive.
 
 **Lesson Elements**
 
-See Docs/Lesson_Diagram.png
+See [Docs/Lesson_Diagram.png](https://github.com/OCBier/tutorial-system-with-eml-parser/blob/master/Docs/Lesson_Diagram.png)
 -*Lesson*
     Element which represents an entire lesson. Parent element for all other elements in the lesson.
     
@@ -119,6 +119,3 @@ See Docs/Lesson_Diagram.png
     1 or more instances in parent. Child of a TermList element. Represents the definition of a preceding Term. Must follow directly after a Term element.
 
 
-## Database Design
-
-See [Docs/EERD.png](Docs/EERD.png)
