@@ -8,7 +8,7 @@ Course content is formatted in an educational markup language (EML) which can be
 **************
 Use Cases and Scenarios
 *************
--See Docs/Scenarios.df  
+-See Docs/Scenarios.pdf  
 -See Docs/Use_Cases.png
 
 
@@ -16,7 +16,7 @@ Use Cases and Scenarios
 System Design 
 **************
 -See Docs/Class_Design.pdf
--
+
 
 
 
