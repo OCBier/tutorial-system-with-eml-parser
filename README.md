@@ -28,7 +28,7 @@ Note that tag names are NOT case-sensitive.
 
 **Quiz Elements**
 
--See [Docs/Quiz_Diagram.png](https://github.com/OCBier/tutorial-system-with-eml-parser/blob/master/Docs/Quiz_Diagram.png)
+ [Docs/Quiz_Diagram.png](https://github.com/OCBier/tutorial-system-with-eml-parser/blob/master/Docs/Quiz_Diagram.png)
 
 
 
@@ -66,6 +66,7 @@ Note that tag names are NOT case-sensitive.
 **Lesson Elements**
 
 See [Docs/Lesson_Diagram.png](https://github.com/OCBier/tutorial-system-with-eml-parser/blob/master/Docs/Lesson_Diagram.png)
+
 -*Lesson*
     Element which represents an entire lesson. Parent element for all other elements in the lesson.
     
