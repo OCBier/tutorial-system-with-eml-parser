@@ -2,7 +2,7 @@
 
 A small-scale learning management system which will present different components of courses to students/learners. 
 
-Course content is formatted in an educational markup language (EML) which can be parsed and output as the corresponding HTML.
+Course content is formatted in an educational markup language (EML) which can be parsed and output as HTML.
 
 
 
